@@ -75,8 +75,19 @@ public class ProduktyController
 	@RequestMapping(value = {"/produkty/addToCart/"}, method=RequestMethod.POST)
 	public String addToCart(Produkty produkt, Model model)
 	{
-		Produkty p = produktyService.getProdukt(produkt.getId());
-		shoppingCart.addItem(p);
+		boolean prodWKoszyku = false;
+		for(Produkty p : shoppingCart.getItems())
+		{
+			if(p.getId().equals(produkt.getId()))
+			{
+				prodWKoszyku = true;
+			}
+		}
+		if(!prodWKoszyku)
+		{
+			Produkty p = produktyService.getProdukt(produkt.getId());
+			shoppingCart.addItem(p);
+		}
 		
 		return "redirect:/koszyk";
 	}

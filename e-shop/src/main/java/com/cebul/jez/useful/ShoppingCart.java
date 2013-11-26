@@ -15,19 +15,23 @@ import com.cebul.jez.entity.Produkty;
 public class ShoppingCart implements Serializable
 {
 	private List<Produkty> items;
+	private Double suma;
 	
 	public ShoppingCart()
 	{
 		this.items = new ArrayList<Produkty>();
+		this.suma = 0.0;
 	}
 	
 	public void addItem(Produkty i)
 	{
 		items.add(i);
+		addToSum(i.getCena());
 	}
-	public Produkty removeItem(int index)
+	public Object removeItem(Produkty p)
 	{
-		return items.remove(index);
+		subFromSum(p.getCena());
+		return items.remove(p);
 	}
 	public List<Produkty> getItems() {
 		return items;
@@ -35,6 +39,22 @@ public class ShoppingCart implements Serializable
 
 	public void setItems(List<Produkty> items) {
 		this.items = items;
+	}
+	public void addToSum(Double cena)
+	{
+		this.suma += cena;
+	}
+	public void subFromSum(Double cena)
+	{
+		this.suma -= cena;
+	}
+
+	public Double getSuma() {
+		return suma;
+	}
+
+	public void setSuma(Double suma) {
+		this.suma = suma;
 	}
 	
 	

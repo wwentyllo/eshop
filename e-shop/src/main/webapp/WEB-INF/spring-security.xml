@@ -15,7 +15,7 @@
         <intercept-url pattern="/logowanie/" access="permitAll" requires-channel="https"/>
          
         <form-login  
-        login-page="/logowanie" authentication-failure-url="/logowanie?login_error=t" default-target-url="/logowanie/setUserSession" />
+        login-page="/logowanie" always-use-default-target="true" authentication-failure-url="/logowanie?login_error=t" default-target-url="/logowanie/setUserSession" />
        <logout logout-success-url="/" />
     </http>
 

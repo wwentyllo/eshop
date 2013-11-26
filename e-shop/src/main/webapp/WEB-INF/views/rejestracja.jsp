@@ -101,42 +101,46 @@ function doAjaxPost()
 			</div>
 		</div>
 		<div id='searchDiv'>
-			<form action="" method="GET">
+			
 				<table>
 					<tr>
-						<td>
-							<input style="padding: 2px; padding-left: 8px;height: 35px; width: 400px; margin-left: 10px; margin-top: 5px;" id='szukanaFraza' type="text" value="Wpisz czego szuaksz..." onfocus="searchFocus();" onfocusout="searchFocusOut();">	
-						</td>
-						<td>
-							<select name='szukanaKat' id='szukanaKat' style="height: 35px; width: 160px; margin-top: 5px; background-color: #EDEDED;">
-								<option value="0">WSZĘDZIE
-								</option>
-								<c:forEach items="${kategoryList}" var="element"> 
-									<option value="${element.nazwa}">
-										${element.nazwa}
+						<form action="${pageContext.request.contextPath}/szukaj/szukajProd/" method="get">
+							<td>
+								<input id='szukanaFraza' name="szukanaFraza" type="text" autocomplete="off" style="padding: 2px; padding-left: 8px;height: 35px; width: 400px; margin-left: 10px; margin-top: 5px;"  value="Wpisz czego szuaksz..." onblur="ukryjPodpowiedzi();" onkeyup="sprawdzSlowo();" onfocus="searchFocus();" >	
+							</td>
+							<td>
+								<select name='szukanaKat' id='szukanaKat' style="height: 35px; width: 160px; margin-top: 5px; background-color: #EDEDED;">
+									<option value="0">WSZĘDZIE
 									</option>
-									
-								</c:forEach>
-							</select>	
-						</td>
-						<td>
-							<input type="submit" value="Szukaj" style="height: 35px; width: 100px; margin-top: 5px; background-image: linear-gradient(#6E6E6E 0%, #343434 100%); color: white;">	
-						</td>
+									<c:forEach items="${kategoryList}" var="element"> 
+										<option value="${element.id}">
+											${element.nazwa}
+										</option>
+										
+									</c:forEach>
+								</select>	
+							</td>
+							
+							<td>
+								<input type="submit" value="Szukaj" style="height: 35px; width: 100px; margin-top: 5px; background-image: linear-gradient(#6E6E6E 0%, #343434 100%); color: white;">	
+							</td>
+						</form>
 						<td>
 							<div style="border-left: 1px solid black; padding-left: 10px;">
-								<a href="<c:url value='/koszyk' />" style="font-weight:bold; font-size: 16px;;text-decoration: none; border: none; color: black;">MOJE KONTO</a>
+								<a href="<c:url value='/mojekonto/' />" style="font-weight:bold; font-size: 16px;;text-decoration: none; border: none; color: black;">MOJE KONTO</a>
 							</div>
 						</td>
 						<td>
 							<div style="border-left: 1px solid black; padding-left: 10px; ">
-								<a href="<c:url value='/koszyk' />" style="font-weight:bold; font-size: 16px;;text-decoration: none; border: none; color: black;">KOSZYK</a>
+								<a href="<c:url value='/koszyk/' />" style="font-weight:bold; font-size: 16px;;text-decoration: none; border: none; color: black;">KOSZYK</a>
 							</div>
 						</td>
 						
 					</tr>
 				</table>
-			</form>
-		</div><div id='main'>
+			
+		</div>
+		<div id='main'>
 		<div id='main-cenetr' align='center'>
 				
 	

@@ -54,12 +54,12 @@
 			</div>
 		</div>
 		<div id='searchDiv'>
-			<form action="" method="GET">
+			
 				<table>
 					<tr>
-						<form action="/szukaj" method="post">
+						<form action="${pageContext.request.contextPath}/szukaj/szukajProd/" method="get">
 							<td>
-								<input autocomplete="off" style="padding: 2px; padding-left: 8px;height: 35px; width: 400px; margin-left: 10px; margin-top: 5px;" id='szukanaFraza' type="text" value="Wpisz czego szuaksz..." onblur="ukryjPodpowiedzi();" onkeyup="sprawdzSlowo();" onfocus="searchFocus();" >	
+								<input id='szukanaFraza' name="szukanaFraza" type="text" autocomplete="off" style="padding: 2px; padding-left: 8px;height: 35px; width: 400px; margin-left: 10px; margin-top: 5px;"  value="Wpisz czego szuaksz..." onblur="ukryjPodpowiedzi();" onkeyup="sprawdzSlowo();" onfocus="searchFocus();" >	
 							</td>
 							<td>
 								<select name='szukanaKat' id='szukanaKat' style="height: 35px; width: 160px; margin-top: 5px; background-color: #EDEDED;">
@@ -91,16 +91,27 @@
 						
 					</tr>
 				</table>
-			</form>
+			
 		</div>
 		<div id='main'>
 			<div id='main-right' style='width: 980px; padding-left: 10px; padding-top: 10px;'>
-				<span style="display: block; margin: 10px; margin-bottom: 50px; font-size: 18pt; font-weight: bold;">Twój koszyk</span>
-				<div  style='border: 1px solid #F2FFE1 ;min-height:300px; width: 920px;  background-image: linear-gradient(#F2FFE1 0%, #FFFFFF 100%); -moz-border-radius: 30px; border-radius: 30px; padding: 30px;'>
+				<div style="margin: 10px; margin-bottom: 30px;">
+					<span style="font-size: 18pt; font-weight: bold;">Twój koszyk</span>
+					<a href="${pageContext.request.contextPath}/koszyk/zamowienie/" style="margin-left: 700px; fony-weight: bold; color: white; display:block; background-color: #8AC74A; text-decoration: none; width: 200px; text-align: center; padding: 5px;"  >Przejdź do kasy</a>
+				</div>
+				<div  style='border: 1px solid #F2FFE1 ;min-height:300px; width: 920px;  background-image: linear-gradient(#CCF89C 0%, #FFFFFF 100%); -moz-border-radius: 30px; border-radius: 30px; padding: 30px;'>
 
+					<c:choose>
+						<c:when test="${empty shoppingCart.items}">
+							<div style="margin-top: 70px;" align="center">
+								<p style="font-size: 18pt; font-weight: bold;">Twój koszyk jest pusty. </p>
+								<p>Jest nam niezmiernie przykro w ztego powodu.</p>
+							</div>
+						</c:when>
+					</c:choose>
 					<c:forEach items="${shoppingCart.items}" var="element" varStatus="status"> 
 						<a class="greenSelect" style="color: black; text-decoration: none; border: 0px;" href="${pageContext.request.contextPath}/produkty/${element.id}/">
-						<div  style=" width: 900px; border-bottom: 1px solid #DFDFDF; background-color: red;">
+						<div  class="divProd" style=" width: 900px; height: 100px;border-bottom: 1px solid #DFDFDF; ">
 							<div style="float:left;">
 							<c:choose>
 									<c:when test="${!empty element.zdjecie}">
@@ -111,9 +122,9 @@
 									</c:otherwise>
 							</c:choose>
 							</div>
-								<div style="width: 800px;">
+								<div style="width: 830px;">
 									<div style="padding: 10px; float:left;  width: 460px; height: 80px;">
-										<img style="width: 20px; " src="<c:url value='/resources/images/ok.gif' />" />
+										<img style="width: 20px; " src="<c:url value='/resources/images/ok.png' />" />
 										<span style=" font-size: 16pt; font-weight: bold;">${element.nazwa}</span>
 										<c:set var="dat" value="${element.dataDodania}" />
 										<span style="display:block; margin-top: 40px; font-size: 12pt;"><fmt:formatDate value="${dat}" /></span>
@@ -123,18 +134,30 @@
 										
 										<c:choose>
 											<c:when test="${czyKupTeraz[status.count-1]}">
-												<span style="display:block; margin-top: 40px; font-size: 12pt;">Kup Teraz</span>
+												<span style="display:block; margin-top: 20px; font-size: 12pt;">Kup Teraz</span>
 											</c:when>
 											<c:otherwise>
-												<span style="display:block; margin-top: 40px; font-size: 12pt;">Licytacja</span>
+												<span style="display:block; margin-top: 20px; font-size: 12pt;">Licytacja</span>
 											</c:otherwise>
 										</c:choose>
+									</div>
+									<div style="padding-top: 35px; margin-left: 30px;">
+										<a href="${pageContext.request.contextPath}/koszyk/usun/${element.id}/">
+											<img style="width: 30px; " src="<c:url value='/resources/images/error.png' />" />
+										</a>
 									</div>
 								</div>
 						</div>
 						</a>
 					</c:forEach>
-					
+					<c:choose>
+						<c:when test="${empty shoppingCart.items}">
+							<div id="suma" style="margin-left:580px;">
+								<span style="margin: 10px; margin-bottom: 50px; font-size: 18pt; font-weight: bold;">Suma:</span>
+								<span style="margin: 10px; margin-bottom: 50px; font-size: 18pt; font-weight: bold;">${shoppingCart.suma} zł</span>
+							</div>
+						</c:when>
+					</c:choose>
 				</div>
 			</div>
 		</div>
