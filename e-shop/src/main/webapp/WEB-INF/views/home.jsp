@@ -23,7 +23,7 @@
 		<div id='top'>
 			<div id="top-left">
 				<ul type="square" style="margin-top: 25px; font: 700 12px/22px 'Lato',Arial,sans-serif; list-style-image: url(<c:url value='/resources/images/punktor.jpg' />)">
-			        <li>Atrakcyjny ceny</li>
+			        <li>Atrakcyjne ceny</li>
 			        <li>Szeroki asortyment</li>
 			        <li>Zakupy z Nami to przyjemność</li>
 			    </ul>
@@ -45,7 +45,7 @@
 							  	<a href="/jez/j_spring_security_logout"> wyloguj</a>
 						</c:when>
 	  					<c:otherwise>
-	  							<a style='margin-top: 40px;' href='/jez/logowanie'>Zaloguj</a>
+	  							<a style='margin-top: 40px;' href='/jez/logowanie'>Logowanie</a>
 								<a href='/jez/rejestracja'>Rejestracja</a>
 	  					</c:otherwise>
   					</c:choose>
@@ -59,7 +59,7 @@
 					<tr>
 						<form action="${pageContext.request.contextPath}/szukaj/szukajProd/" method="get">
 							<td>
-								<input id='szukanaFraza' name="szukanaFraza" type="text" autocomplete="off" style="padding: 2px; padding-left: 8px;height: 35px; width: 400px; margin-left: 10px; margin-top: 5px;"  value="Wpisz czego szuaksz..." onblur="ukryjPodpowiedzi();" onkeyup="sprawdzSlowo();" onfocus="searchFocus();" >	
+								<input id='szukanaFraza' name="szukanaFraza" type="text" autocomplete="off" style="padding: 2px; padding-left: 8px;height: 35px; width: 400px; margin-left: 10px; margin-top: 5px;"  value="Wpisz czego szukasz..." onblur="ukryjPodpowiedzi();" onkeyup="sprawdzSlowo();" onfocus="searchFocus();" >	
 							</td>
 							<td>
 								<select name='szukanaKat' id='szukanaKat' style="height: 35px; width: 160px; margin-top: 5px; background-color: #EDEDED;">

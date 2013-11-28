@@ -66,6 +66,7 @@ public class LogController
 		Principal principal = request.getUserPrincipal();
 		String userName = principal.getName();
 		User u = userDao.getUser(userName);
+		String ranga = u.getRanga();
 		session.setAttribute("sessionUser", u);
 		
 		// ustawienie komponentu zawierajacego dane usera, widocznego w web flow
@@ -78,6 +79,12 @@ public class LogController
 		}
 		System.out.println("test uset login:"+usinfo.getLogin() );
 		
+		if(ranga.equals("admin"))
+		{
+			return "redirect:/admin_home";
+		}
+		else
+			
 		return "redirect:/home";
 	}
 	/**

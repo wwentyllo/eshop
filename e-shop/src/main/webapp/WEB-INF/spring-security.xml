@@ -8,6 +8,8 @@
                     http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     <http use-expressions="true">
+    	<intercept-url pattern="/panel/**" access="hasRole('admin')" />
+    	<intercept-url pattern="/admin_home" access="hasRole('admin')" />
         <intercept-url pattern="/main/**" access="hasRole('user')" />
         <intercept-url pattern="/mojekonto/**" access="hasRole('user')" />
         <intercept-url pattern="/" access="permitAll" />

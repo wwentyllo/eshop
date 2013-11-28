@@ -20,7 +20,7 @@
 		<div id='top'>
 			<div id="top-left">
 				<ul type="square" style="margin-top: 25px; font: 700 12px/22px 'Lato',Arial,sans-serif; list-style-image: url(<c:url value='/resources/images/punktor.jpg' />)">
-			        <li>Atrakcyjny ceny</li>
+			        <li>Atrakcyjne ceny</li>
 			        <li>Szeroki asortyment</li>
 			        <li>Zakupy z Nami to przyjemność</li>
 			    </ul>
